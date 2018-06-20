@@ -45,67 +45,16 @@ INSERT INTO targets (name, location, photo, security_level);
 ('Santino D''Antonio', 'Continental Hotel', 'https://goo.gl/fUPkYy',10),
 ('Sonny Valerio', 'Queens', 'https://goo.gl/8DHYUS',4);
 
-CREATE TABLE assassins_contracts (assassin integer foreign key, contracts integer foreign key)
-INSERT INTO assassins_contracts (assassin, contracts);
-VALUES
-()
 
 
-
-
-
-
-
-
-
-
-
-1)Select all the assassins, sorted by number of kills.
-SELECT * FROM Assassins ORDER BY kills DESC
-
-2)Select all of the assassins older than 30 years old.
-SELECT * FROM Assassins WHERE age>30;
-
-3)Select all of the contracts that can afford to pay Nikita Mears. (Budget >= her price)
-SELECT * FROM Contracts WHERE budget>=30;
-
-4)Count the number of assassins that are capable of taking out Norman Stansfield. (Their rating >= his security level)
-SELECT * FROM Assassins WHERE rating>=7;
-
-5) Get the total amount it would require to hire every available assassin.
-SELECT SUM(price) FROM Assassins;
-
-6) Assign the following jobs to these assassins:
-   Jules Winnfield -> Butch Coolidge
-   The Jackal -> The Jaguar
-   John Wick -> The Jaguar
-   Leon -> Norman Stansfield
-   Pickle Rick -> Sonny Valerio
-   Jules Winnfield -> Santino D''Antonio
-   Nikita Mears -> Norman Stansfield
-   Ghost Dog -> Butch Coolidalge
-
-CREATE TABLE assassins_contracts (Assassins_id integer references Assassins (id), Contracts_id integer references contracts (id));
-INSERT INTO assassins_contracts (assassins_id, contracts_id) VALUES (6, 1); etc…
-SELECT * FROM assassins_contracts;
-
-assassins_id | contracts_id 
---------------+--------------
-       		  6  |  1
-      		  1  |  2
-    		  5  |  2
-     		  7  |  3
-     		  9  |  5
-    		  6  |  4
-    		  8  |  3
-	     	  3  |  1
-
-SELECT * FROM assassins INNER JOIN assassins_contracts ON assassins.id=assassins_contracts.assassins_id inner join contracts on assassins_contracts.contracts_id=contracts.id;
-
-
-SELECT(assassins.full_name, contracts.client_name, contracts.target_name) FROM assassins INNER JOIN assassins_contracts ON assassins.id=assassins_contracts.assassins.id;
-
-7) Count the number of currently contracted assassins.
-SELECT COUNT(*) from assassins_contracts;
-
-ALTER TABLE contracts ADD by_who text;
+CREATE TABLE assassins_contracts (assassins_id integer references assassins (id), contract_id integer references contracts (id));
+ INSERT INTO assassins_contracts (assassins_id, contract_id);
+ VALUES 
+(6, 1),
+(1, 2),
+(5, 2),
+(7, 3),
+(9, 5),
+(6, 4),
+(8, 3),
+(3, 1);
