@@ -1,16 +1,5 @@
-psql < killbase.sql
-
-
-
-CREATE TABLE contracts (id serial primary key, target_name text foreign key, target_location text client_name text foreign key, budget integer, if_complete boolean by_who text foreign key);
-INSERT INTO contracts (target_name, target_location, target_photo, 
-VALUES
-('Butch Coolidge', 'Los Angeles', 'https://goo.gl/LCquZj', 3, 'Marcellus_Wallace', 40),
-('The Jaguar', 'Russian Embassy', 'https://goo.gl/6JWsiv', 9, 'Concerto', 70),
-('Norman Stansfield', 'Manhattan', 'https://i.imgur.com/mdIk33E.jpg', 7, 'Mathilda', 35),
-('Santino D''Antonio', 'Continental Hotel', 'https://goo.gl/fUPkYy', 10, 'Winston', 25),
-('Sonny_Valerio', 'Queens', 'https://goo.gl/8DHYUS', 4, 'Ray_Vargo', 10);
-
+DROP DATABASE killbase;
+CREATE DATABASE killbase;
 
 CREATE TABLE assassins (full_name text, code_names text, weapon text, age integer, price integer, rating integer, kills integer, id serial primary key)
 INSERT INTO assassins (full_name, code_names, weapon, age, price, rating, kills, id);
@@ -25,7 +14,6 @@ VALUES
 ('Nikita Mears', 'Nikita', 'La Femme Nikita', 'Silenced pistols', 28, 30, 7, 32),
 ('Pickle Rick', 'Solenya', 'Lasers and office supplies', 60, 0, 8, 24);
 
-
 CREATE TABLE clients (id serial primary key, client_name text);
 INSERT INTO clients (client_name);
 VALUES 
@@ -35,17 +23,23 @@ VALUES
 ('Winston'),
 ('Ray Vargo');
 
+CREATE TABLE contracts (id serial primary key, client_id integer references clients (id), budget integer, target_id integer references targets (id), completed boolean, assassins_id integer references assassins (id));
+INSERT INTO contracts (client_id, budget, target_id, completed, assassins_id);
+VALUES 
+(1, 40, 1, false, null),
+(2, 70, 2, false, null),
+(3, 35, 3, false, null),
+(4, 25, 4, false, null),
+(5, 10, 5, false, null);
 
 CREATE TABLE targets (id serial primary key, name text, location text, photo text, security_level numeric(3, 1));
 INSERT INTO targets (name, location, photo, security_level);
  VALUES 
  ('Butch Coolidge', 'Los Angeles', 'https://goo.gl/LCquZj',3),
-('The Jaguar', 'Russian Embassy', 'https://goo.gl/6JWsiv',9);
+('The Jaguar', 'Russian Embassy', 'https://goo.gl/6JWsiv',9),
 ('Norman Stansfield', 'Manhattan', 'https://i.imgur.com/mdIk33E.jpg',7),
 ('Santino D''Antonio', 'Continental Hotel', 'https://goo.gl/fUPkYy',10),
 ('Sonny Valerio', 'Queens', 'https://goo.gl/8DHYUS',4);
-
-
 
 CREATE TABLE assassins_contracts (assassins_id integer references assassins (id), contract_id integer references contracts (id));
  INSERT INTO assassins_contracts (assassins_id, contract_id);
