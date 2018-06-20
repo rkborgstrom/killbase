@@ -27,7 +27,7 @@ VALUES
 
 CREATE TABLE targets (id serial primary key, name text, location text, photo text, security_level numeric(3, 1));
 INSERT INTO targets (name, location, photo, security_level)
- VALUES 
+VALUES 
  ('Butch Coolidge', 'Los Angeles', 'https://goo.gl/LCquZj',3),
 ('The Jaguar', 'Russian Embassy', 'https://goo.gl/6JWsiv',9),
 ('Norman Stansfield', 'Manhattan', 'https://i.imgur.com/mdIk33E.jpg',7),
@@ -43,6 +43,7 @@ VALUES
 (4, 25, 4, false, null),
 (5, 10, 5, false, null);
 
+
 CREATE TABLE assassins_contracts (assassins_id integer references assassins (id), contract_id integer references contracts (id));
  INSERT INTO assassins_contracts (assassins_id, contract_id)
  VALUES 
@@ -55,9 +56,21 @@ CREATE TABLE assassins_contracts (assassins_id integer references assassins (id)
 (8, 3),
 (3, 1);
 
+CREATE TABLE assassins_codename (assassins integer references assassins, code_names text);
+INSERT INTO assassins_codename (assassins, code_names)
+VALUES
+(1, 'The Jackal'),
+(2, 'Old Man'),
+(3, 'Ghost Dog'),
+(5, 'Baba Yaga'),
+(7, 'The Professional'),
+(8, 'Nikita, La Femme Nikita'),
+(9, 'Solenya');
+
 
 select * from assassins;
 select * from clients;
 select * from targets;
 select * from contracts;
 select * from assassins_contracts;
+select * from assassins_codename;
