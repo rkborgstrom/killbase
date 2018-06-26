@@ -1,0 +1,23 @@
+{
+  "name": "killbase",
+  "version": "1.0.0",
+  "description": "Killbase is a job board for international assassins. Assassins and their clients can register with Killbase, and enter or sign up for jobs. Assassins can have zero or more code names, and can sign up for any number of contracts; a contract may also be open to any number of assassins.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkborgstrom/killbase.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rkborgstrom/killbase/issues"
+  },
+  "homepage": "https://github.com/rkborgstrom/killbase#readme",
+  "dependencies": {
+    "knex": "^0.14.6",
+    "pg": "^7.4.3"
+  }
+}
