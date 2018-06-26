@@ -62,10 +62,10 @@ VALUES
 (1, 'The Jackal'),
 (2, 'Old Man'),
 (3, 'Ghost Dog'),
-(5, 'Baba Yaga'),
-(7, 'The Professional'),
-(8, 'Nikita, La Femme Nikita'),
-(9, 'Solenya');
+(4, 'Baba Yaga'),
+(5, 'The Professional'),
+(6, 'Nikita, La Femme Nikita'),
+(7, 'Solenya');
 
 
 select * from assassins;
